@@ -113,7 +113,7 @@ describe('Doc', function() {
       });
     }
 
-    it('single component ops emit an `op` event', function(done) {
+    it('single component ops emit an `after component` event', function(done) {
       var doc = this.doc;
       var doc2 = this.doc2;
       var doc3 = this.doc3;
@@ -138,7 +138,7 @@ describe('Doc', function() {
           expect(doc.data).eql({color: 'black'});
         }
       ];
-      doc.on('op', function(op, source) {
+      doc.on('after component', function(op, source) {
         var handler = handlers.shift();
         handler(op, source);
       });
@@ -150,7 +150,7 @@ describe('Doc', function() {
       });
     });
 
-    it('remote multi component ops emit individual `op` events', function(done) {
+    it('remote multi component ops emit multiple `after component` events', function(done) {
       var doc = this.doc;
       var doc2 = this.doc2;
       var doc3 = this.doc3;
@@ -187,7 +187,7 @@ describe('Doc', function() {
           expect(doc.data).eql({color: 'black', weight: 40, age: 5, owner: 'sue'});
         }
       ];
-      doc.on('op', function(op, source) {
+      doc.on('after component', function(op, source) {
         var handler = handlers.shift();
         handler(op, source);
       });
@@ -199,7 +199,7 @@ describe('Doc', function() {
       });
     });
 
-    it('remote multi component ops are transformed by ops submitted in `op` event handlers', function(done) {
+    it('remote multi component ops are transformed by ops submitted in `after component` event handlers', function(done) {
       var doc = this.doc;
       var doc2 = this.doc2;
       var doc3 = this.doc3;
@@ -238,7 +238,7 @@ describe('Doc', function() {
           expect(doc.data).eql({tricks: ['shake', 'tug stick']});
         }
       ];
-      doc.on('op', function(op, source) {
+      doc.on('after component', function(op, source) {
         var handler = handlers.shift();
         handler(op, source);
       });
